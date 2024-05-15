@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""This module contains the Base class"""
 from uuid import uuid4
 from datetime import datetime
 
