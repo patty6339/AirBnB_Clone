@@ -24,7 +24,7 @@ class BaseModel:
     def __str__(self):
         """Return a string representation of the BaseModel instance"""
         obj_dict = self.__dict__.copy()
-        obj_dict['__class__'] = self.__class__.__name__
+        # obj_dict['__class__'] = self.__class__.__name__
 
         dict_repr = {
             'my_number': obj_dict.get('my_number'),
@@ -32,7 +32,7 @@ class BaseModel:
             'updated_at': repr(obj_dict.get('updated_at')),
             'id': obj_dict.get('id'),
             'created_at': repr(obj_dict.get('created_at')),
-            # '__class__': obj_dict.get('__class__')
+            '__class__': obj_dict.get('__class__')
         }
         return "[{}] ({}) {}".format(
                 self.__class__.__name__, self.id, dict_repr)
