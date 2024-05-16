@@ -163,6 +163,18 @@ class HBNBCommand(cmd.Cmd):
         instance.save()
         storage.save()  # Ensure storage is saved
 
+    def help_update(self):
+        """Help information for the update command"""
+        print(
+            "Updates an instance based on the class name "
+            "and id by adding or updating an attribute."
+        )
+        print(
+            "USAGE: update <class name> <id> "
+            "<attribute name> <attribute value>"
+        )
+        print()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
