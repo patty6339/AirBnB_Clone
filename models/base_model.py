@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Defines a base model class.
 
-This class defines all common attributes/methods for other classes.
+    This class defines all common attributes/methods for other classes.
 """
 # Imports
 from datetime import datetime

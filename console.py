@@ -6,6 +6,7 @@ import json
 from models import storage
 from models.base_model import BaseModel
 
+
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     __classes = ["BaseModel"]
@@ -46,9 +47,10 @@ class HBNBCommand(cmd.Cmd):
             return
         new_instance = eval(arg)()
         new_instance.save()
-        print("Created new instance:", new_instance.id)  # Debug print
+        # print("Created new instance:", new_instance.id)  # Debug print
+        print(new_instance.id)
         storage.reload()
-        print("Storage after create and reload:", storage.all())  # Debug print
+        # print("Storage after create & reload:", storage.all()) # Debug print
 
     def do_show(self, arg):
         """
@@ -159,8 +161,7 @@ class HBNBCommand(cmd.Cmd):
 
         setattr(instance, attribute_name, attribute_value)
         instance.save()
-        storage.save()  # Ensure the storage is saved
-
+        storage.save()  # Ensure storage is saved
 
 
 if __name__ == '__main__':
