@@ -1,60 +1,64 @@
 #!/usr/bin/python3
-"""This module contains the Base class"""
-from uuid import uuid4
+"""Defines a base model class.
+
+This class defines all common attributes/methods for other classes.
+"""
+# Imports
 from datetime import datetime
-# from models import storage
+from uuid import uuid4
+import models
 
 
 class BaseModel:
-    """Defines all common attributes/methods for other classes"""
+    """Represents the "base" for all other classes."""
 
+    # kwargs is a dictionary
     def __init__(self, *args, **kwargs):
-        """Initialize a new BaseModel instance"""
+        """Initialize a new BaseModel/ Instance
+
+        Args:
+            id (int): Unique id for each BaseModel
+            created_at: Date of object creation
+            updated_at: Date of object change
+        """
+        # tform = "%Y-%m-%dT%H:%M:%S.%f"
+
         if kwargs:
+            # Create from dictionary, Loop dictionary key and values
             for key, value in kwargs.items():
-                if key == "created_at" or key == "updated_at":
-                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                if key != "__class__":
-                    setattr(self, key, value)
+                # Set object attributes dynamically using setattr function
+                if(key == "__class__"):
+                    continue
+
+                # Convert isoformat string date to datetime object
+                if key in ("created_at", "updated_at"):
+                    value = datetime.fromisoformat(value)
+
+                setattr(self, key, value)
         else:
             self.id = str(uuid4())
-            self.created_at = self.updated_at = datetime.now()
-            # storage.new(self)
-
-    def __str__(self):
-        """Return a string representation of the BaseModel instance"""
-        obj_dict = self.__dict__.copy()
-        # obj_dict['__class__'] = self.__class__.__name__
-
-        dict_repr = {
-            'my_number': obj_dict.get('my_number'),
-            'name': obj_dict.get('name'),
-            'updated_at': repr(obj_dict.get('updated_at')),
-            'id': obj_dict.get('id'),
-            'created_at': repr(obj_dict.get('created_at')),
-            '__class__': obj_dict.get('__class__')
-        }
-        return "[{}] ({}) {}".format(
-                self.__class__.__name__, self.id, dict_repr)
+            self.created_at = datetime.today()
+            self.updated_at = datetime.today()
+            models.storage.new(self)
 
     def save(self):
-        """Update updated_at attribute with datetime"""
+        """Updates the public instance attribute updated_at with
+            the current datetime.
+        """
         self.updated_at = datetime.now()
-        # storage.save()
+        models.storage.save()
 
     def to_dict(self):
-        """Return a dictionary representation of the BaseModel instance"""
-        obj_dict = self.__dict__.copy()
-        obj_dict['__class__'] = self.__class__.__name__
-        obj_dict['created_at'] = self.created_at.isoformat()
-        obj_dict['updated_at'] = self.updated_at.isoformat()
+        """Return a dictionary containing all keys/values of __dict__ of
+            the instance
+        """
+        dictionary = self.__dict__.copy()
+        dictionary["created_at"] = self.created_at.isoformat()
+        dictionary["updated_at"] = self.updated_at.isoformat()
+        dictionary["__class__"] = self.__class__.__name__
+        return dictionary
 
-        # Ensure the dictionary keys are in the desired order
-        key_order = [
-            'my_number',
-            'name', '__class__',
-            'updated_at', 'id',
-            'created_at'
-        ]
-        sorted_obj_dict = {k: obj_dict[k] for k in key_order if k in obj_dict}
-        return sorted_obj_dict
+    def __str__(self):
+        """Return the printable representation of model"""
+        return "[{}] ({}) {}" \
+            .format(self.__class__.__name__, self.id, self.__dict__)
