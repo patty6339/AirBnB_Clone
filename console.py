@@ -189,6 +189,27 @@ class HBNBCommand(cmd.Cmd):
         )
         print()
 
+    def default(self, line):
+        """
+        Method called on an input line when
+        the command prefix is not recognized.
+        In this case it will be used to handle
+        <class name>.all() commands.
+        """
+        if line:
+            inputs = line.split('.')
+            if len(inputs) == 2:
+                class_name, method_name = inputs
+                method_name = method_name.strip('()')  # Strip parentheses
+                if method_name == "all" and class_name in self.__classes:
+                    self.do_all(class_name)
+                else:
+                    print("*** Unknown syntax: {}".format(line))
+            else:
+                print("*** Unknown syntax: {}".format(line))
+        else:
+            print("*** Unknown syntax: {}".format(line))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
