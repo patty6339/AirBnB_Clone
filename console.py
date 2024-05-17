@@ -189,12 +189,22 @@ class HBNBCommand(cmd.Cmd):
         )
         print()
 
+    def do_count(self, class_name):
+        """
+        Counts the number of instances of a given class.
+        """
+        count = 0
+        for obj in storage.all().values():
+            if obj.__class__.__name__ == class_name:
+                count += 1
+        print(count)
+
     def default(self, line):
         """
-        Method called on an input line when
-        the command prefix is not recognized.
-        In this case it will be used to handle
-        <class name>.all() commands.
+        Method called on an input line when the
+        command prefix is not recognized.
+        In this case it will be used to handle <class name>.all() and
+        <class name>.count() commands.
         """
         if line:
             inputs = line.split('.')
@@ -203,6 +213,8 @@ class HBNBCommand(cmd.Cmd):
                 method_name = method_name.strip('()')  # Strip parentheses
                 if method_name == "all" and class_name in self.__classes:
                     self.do_all(class_name)
+                elif method_name == "count" and class_name in self.__classes:
+                    self.do_count(class_name)
                 else:
                     print("*** Unknown syntax: {}".format(line))
             else:
