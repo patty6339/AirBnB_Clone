@@ -7,6 +7,6 @@ class State(BaseModel):
     """
         State class that inherits from BaseModel
             Attributes:
-                name (str): The name of the state, initialized as an empty string
+                name (str): The name of the state
     """
     name = ""

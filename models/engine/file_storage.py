@@ -1,13 +1,17 @@
 #!/usr/bin/python3
 """
-    Defines a class that serializes instances to a JSON file and
-    deserializes JSON file to instances:
+    This module defines a class that serializes instances to a
+    JSON file and deserializes JSON files back to instances
 """
 # imports
 import json
 from models.base_model import BaseModel
 from models.user import User
-
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 
 class FileStorage:
     """Class for file storage"""
@@ -31,7 +35,6 @@ class FileStorage:
 
     def save(self):
         """"Serializes __objects to the JSON file (path: __file_path)"""
-        # Open file for writing and close automatically
         temp_dictionary = self.__objects
         object_dictionary = {
             obj: temp_dictionary[obj].to_dict()
@@ -40,7 +43,7 @@ class FileStorage:
             json.dump(object_dictionary, file)
 
     def reload(self):
-        """Deserializes the JSON file to __objects if file exists"""
+        """Deserializes the JSON file to __objects (only if the JSON file exists)"""
         try:
             with open(self.__file_path, "r") as file:
                 obj_dict = json.load(file)
