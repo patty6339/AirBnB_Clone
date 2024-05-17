@@ -203,7 +203,8 @@ class HBNBCommand(cmd.Cmd):
         """
         Method called on an input line when the
         command prefix is not recognized.
-        In this case it will be used to handle <class name>.all() and
+        In this case it will be used to handle
+        <class name>.all() and
         <class name>.count() commands.
         """
         if line:
