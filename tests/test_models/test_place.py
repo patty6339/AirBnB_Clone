@@ -2,6 +2,7 @@ import unittest
 from models.place import Place
 from models.base_model import BaseModel
 
+
 class TestPlace(unittest.TestCase):
     def setUp(self):
         self.place = Place()
@@ -28,6 +29,7 @@ class TestPlace(unittest.TestCase):
             with self.subTest(attr=attr, value=value):
                 self.assertTrue(hasattr(self.place, attr))
                 self.assertEqual(getattr(self.place, attr), value)
+
 
 if __name__ == '__main__':
     unittest.main()

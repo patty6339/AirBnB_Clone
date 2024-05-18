@@ -2,6 +2,7 @@ import unittest
 from models.review import Review
 from models.base_model import BaseModel
 
+
 class TestReview(unittest.TestCase):
     def setUp(self):
         self.review = Review()
@@ -20,6 +21,7 @@ class TestReview(unittest.TestCase):
             with self.subTest(attr=attr, value=value):
                 self.assertTrue(hasattr(self.review, attr))
                 self.assertEqual(getattr(self.review, attr), value)
+
 
 if __name__ == '__main__':
     unittest.main()

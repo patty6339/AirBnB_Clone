@@ -2,6 +2,7 @@ import unittest
 from models.city import City
 from models.base_model import BaseModel
 
+
 class TestCity(unittest.TestCase):
     def setUp(self):
         self.city = City()
@@ -15,6 +16,7 @@ class TestCity(unittest.TestCase):
         self.assertTrue(hasattr(self.city, 'name'))
         self.assertEqual(self.city.state_id, "")
         self.assertEqual(self.city.name, "")
+
 
 if __name__ == '__main__':
     unittest.main()

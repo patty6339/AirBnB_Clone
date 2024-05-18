@@ -2,6 +2,7 @@ import unittest
 from models.amenity import Amenity
 from models.base_model import BaseModel
 
+
 class TestAmenity(unittest.TestCase):
     """
     TestAmenity class to test the Amenity class
@@ -38,6 +39,7 @@ class TestAmenity(unittest.TestCase):
         amenity = Amenity()
         self.assertTrue(hasattr(amenity, "name"))
         self.assertEqual(amenity.name, "")
+
 
 if __name__ == "__main__":
     unittest.main()
