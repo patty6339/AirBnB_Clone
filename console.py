@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" This module is the entry point of the program"""
+"""This module is the entry point of the program."""
 import cmd
 import re
 import json
@@ -14,6 +14,8 @@ from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
+    """Entry prompt of the program."""
+
     prompt = '(hbnb) '
     __classes = [
         "BaseModel",
@@ -30,29 +32,33 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_EOF(self, arg):
-        """EOF command to exit the program"""
+        """EOF command to exit the program."""
         print()
         return True
 
     def help_quit(self):
-        """Help information for quit command"""
+        """Help information for quit command."""
         print("Quit command to exit the program")
         print()
 
     def help_EOF(self):
-        """Help information for EOF command"""
+        """Help information for EOF command."""
         print("Exit - command interpreter by pressing Ctrl+D.")
 
     def emptyline(self):
-        """Do nothing on empty line input"""
+        """Do nothing on empty line input."""
         pass
 
     def do_help(self, arg):
-        """Display help for a given command. USAGE: help [command]"""
+        """Display help for a given command. USAGE: help [command]."""
         cmd.Cmd.do_help(self, arg)
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it, and prints the id."""
+        """
+        Create.
+
+        Creates a new instance of BaseModel, saves it, and prints the id.
+        """
         if not arg:
             print("** class name missing **")
             return
@@ -68,6 +74,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
+        Show.
+
         Prints the string representation of
         an instance based on the class name and id.
         """
@@ -89,7 +97,11 @@ class HBNBCommand(cmd.Cmd):
         print(storage.all()[key])
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id."""
+        """
+        Delete.
+
+        Removes an instance based on the class name and id.
+        """
         if not arg:
             print("** class name missing **")
             return
@@ -109,9 +121,7 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def parse(self, arg):
-        """
-        Parse the argument to extract class names.
-        """
+        """Parse the argument to extract class names."""
         curly_braces = re.search(r"\{(.*?)\}", arg)
         brackets = re.search(r"\[(.*?)\]", arg)
         if curly_braces is None:
@@ -130,6 +140,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """
+        All.
+
         Prints all string representations of instances.
         """
         args = self.parse(arg)
@@ -145,6 +157,7 @@ class HBNBCommand(cmd.Cmd):
         print(instances)
 
     def do_update(self, args):
+        """Update function."""
         args = args.split()
         if len(args) < 4:
             print("** attribute name missing **")
@@ -178,7 +191,7 @@ class HBNBCommand(cmd.Cmd):
         storage.save()  # Ensure storage is saved
 
     def help_update(self):
-        """Help information for the update command"""
+        """Help information for the update command."""
         print(
             "Updates an instance based on the class name "
             "and id by adding or updating an attribute."
@@ -191,6 +204,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_count(self, class_name):
         """
+        Count.
+
         Counts the number of instances of a given class.
         """
         count = 0
@@ -201,7 +216,9 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """
-        Method called on an input line when the
+        Call.
+
+        Call on an input line when the
         command prefix is not recognized.
         In this case it will be used to handle
         <class name>.all() and

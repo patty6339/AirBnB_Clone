@@ -1,7 +1,10 @@
 #!/usr/bin/python3
 """
-    This module defines a class that serializes instances to a
-    JSON file and deserializes JSON files back to instances
+Serializer.
+
+This module defines a class that serializes
+instances to a JSON file and deserializes
+JSON files back to instances.
 """
 # imports
 import json
@@ -15,7 +18,12 @@ from models.state import State
 
 
 class FileStorage:
-    """Class for file storage"""
+    """
+    Storage.
+    
+    Class for file storage.
+    """
+
     __file_path = "file.json"
     """path to the JSON file"""
 
@@ -23,11 +31,18 @@ class FileStorage:
     """Stores all basemodel objects"""
 
     def all(self):
-        """Returns a dictionary of all objects"""
+        """
+        All.
+        
+        Returns a dictionary of all objects.
+        """
         return self.__objects
 
     def new(self, obj):
-        """Sets in the obj with key <obj class name>.id in __objects
+        """
+        Create.
+
+        Sets in the obj with key <obj class name>.id in __objects
 
         Args:
             obj (BaseModel): Object to be added
@@ -35,7 +50,11 @@ class FileStorage:
         self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
-        """"Serializes __objects to the JSON file (path: __file_path)"""
+        """
+        Save.
+        
+        Serializes __objects to the JSON file (path: __file_path)
+        """
         temp_dictionary = self.__objects
         object_dictionary = {
             obj: temp_dictionary[obj].to_dict()
@@ -45,8 +64,10 @@ class FileStorage:
 
     def reload(self):
         """
-            Deserializes the JSON file to __objects
-            (only if the JSON file exists)
+        Reload.
+        
+        Deserializes the JSON file to __objects
+        (only if the JSON file exists)
         """
         try:
             with open(self.__file_path, "r") as file:

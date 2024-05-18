@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Defines a base model class.
+"""
+Defines a base model class.
 
     This class defines all common attributes/methods for other classes.
 """
@@ -14,7 +15,10 @@ class BaseModel:
 
     # kwargs is a dictionary
     def __init__(self, *args, **kwargs):
-        """Initialize a new BaseModel/ Instance
+        """
+        Initialize.
+        
+        Initializes a new BaseModel/ Instance
 
         Args:
             id (int): Unique id for each BaseModel
@@ -42,14 +46,21 @@ class BaseModel:
             models.storage.new(self)
 
     def save(self):
-        """Updates the public instance attribute updated_at with
-            the current datetime.
+        """
+        Update.
+        
+        Update on the public instance attribute.
+        
+        Updated_at with the current datetime.
         """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
-        """Return a dictionary containing all keys/values of __dict__ of
+        """
+        Return a dictionary.
+
+            Dictionary contains all keys/values of __dict__ of
             the instance
         """
         dictionary = self.__dict__.copy()
@@ -59,6 +70,6 @@ class BaseModel:
         return dictionary
 
     def __str__(self):
-        """Return the printable representation of model"""
+        """Return the printable representation of model."""
         return "[{}] ({}) {}" \
             .format(self.__class__.__name__, self.id, self.__dict__)
