@@ -11,6 +11,8 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 from models.user import User
+from unittest.mock import patch
+from io import StringIO
 
 
 class HBNBCommand(cmd.Cmd):
@@ -201,6 +203,10 @@ class HBNBCommand(cmd.Cmd):
             "<attribute name> <attribute value>"
         )
         print()
+
+    def help_show(self):
+        print('Show command to retrieve an object from a '
+              'string representation')
 
     def do_count(self, class_name):
         """
