@@ -13,6 +13,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 
+
 class FileStorage:
     """Class for file storage"""
     __file_path = "file.json"
@@ -43,7 +44,10 @@ class FileStorage:
             json.dump(object_dictionary, file)
 
     def reload(self):
-        """Deserializes the JSON file to __objects (only if the JSON file exists)"""
+        """
+            Deserializes the JSON file to __objects
+            (only if the JSON file exists)
+        """
         try:
             with open(self.__file_path, "r") as file:
                 obj_dict = json.load(file)
