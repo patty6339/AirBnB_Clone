@@ -20,7 +20,7 @@ from models.state import State
 class FileStorage:
     """
     Storage.
-    
+
     Class for file storage.
     """
 
@@ -33,7 +33,7 @@ class FileStorage:
     def all(self):
         """
         All.
-        
+
         Returns a dictionary of all objects.
         """
         return self.__objects
@@ -52,7 +52,7 @@ class FileStorage:
     def save(self):
         """
         Save.
-        
+
         Serializes __objects to the JSON file (path: __file_path)
         """
         temp_dictionary = self.__objects
@@ -65,7 +65,7 @@ class FileStorage:
     def reload(self):
         """
         Reload.
-        
+
         Deserializes the JSON file to __objects
         (only if the JSON file exists)
         """

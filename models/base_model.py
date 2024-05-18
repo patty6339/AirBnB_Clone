@@ -17,7 +17,7 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """
         Initialize.
-        
+
         Initializes a new BaseModel/ Instance
 
         Args:
@@ -48,9 +48,9 @@ class BaseModel:
     def save(self):
         """
         Update.
-        
+
         Update on the public instance attribute.
-        
+
         Updated_at with the current datetime.
         """
         self.updated_at = datetime.now()
