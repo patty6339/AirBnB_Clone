@@ -205,6 +205,7 @@ class HBNBCommand(cmd.Cmd):
         print()
 
     def help_show(self):
+        """Help information for the show command."""
         print('Show command to retrieve an object from a '
               'string representation')
 
