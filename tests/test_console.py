@@ -45,6 +45,7 @@ class TestHBNBCommand(unittest.TestCase):
             self.cli.onecmd("create BaseModel")
             new_id = f.getvalue().strip()
             self.assertIn("BaseModel." + new_id, storage.all())
+            pass
 
     def test_show_BaseModel(self):
         with patch('sys.stdout', new=StringIO()) as f:
