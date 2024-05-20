@@ -31,7 +31,7 @@ class BaseModel:
             # Create from dictionary, Loop dictionary key and values
             for key, value in kwargs.items():
                 # Set object attributes dynamically using setattr function
-                if(key == "__class__"):
+                if (key == "__class__"):
                     continue
 
                 # Convert isoformat string date to datetime object
