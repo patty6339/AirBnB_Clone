@@ -1,0 +1,75 @@
+.places .amenities h2{
+    border-bottom: 1px solid  #DDDDDD;
+    width: 100%;
+    font-size: 16px;
+    text-align: left;
+    padding-bottom: 15px;
+}
+
+.places .reviews h2{
+    border-bottom: 1px solid  #DDDDDD;
+    width: 100%;
+    font-size: 16px;
+    text-align: left;
+    padding-bottom: 15px;
+}
+
+.places .reviews p{
+    font-size: 12px;
+}
+
+.places .reviews h3{
+    font-size: 14px;
+}
+
+.places .reviews li{
+    list-style-type: none;
+}
+
+.places .amenities,
+.places .reviews {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.places .amenities h2{
+    float: left;
+}
+
+.places .amenities li {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    width: 100%;
+}
+
+.places .amenities i {
+    display: flex;
+    flex-direction: column;
+}
+
+.places .amenities p {
+    font-size: 20px;
+
+}
+
+.places .amenities .icon_tv{
+    background: url("../images/icon_tv.png");
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+
+.places .amenities .icon_wifi{
+    background: url("../images/icon_wifi.png");
+    width: 50px;
+    height: 50px;
+    display: block;
+}
+
+.places .amenities .icon_pets{
+    background: url("../images/icon_pets.png");
+    width: 50px;
+    height: 50px;
+    display: block;
+}
